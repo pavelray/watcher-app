@@ -1,0 +1,28 @@
+.navbar {
+  padding: 10px;
+  display: flex;
+}
+
+.logo {
+  display: flex;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  width: 100%;
+  
+  li:hover {
+    cursor: pointer;
+    color: #e84545;
+  }
+  a {
+    text-decoration: inherit;
+    color: inherit;
+  }
+}
