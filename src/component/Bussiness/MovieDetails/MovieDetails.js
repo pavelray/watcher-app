@@ -1,16 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useCallback, useEffect, useState } from 'react'
-import Layout from '../component/UI/Layout/Layout';
-import { useParams } from "react-router-dom";
-import "../styles/moviePage.scss";
-import { getMovieCastDetailsDataAPIUrl, getMovieDetailsDataAPIUrl } from '../utils/helperMethods';
-import { API_IMAGE_URL, MEDIA_TYPE } from '../utils/constants';
 import axios from 'axios';
-import Avatar from '../component/UI/Avater/Avatar';
-import WatchProvider from '../component/Bussiness/WatchProvider/WatchProvider';
 
-const MovieDetails = ({ type = MEDIA_TYPE.MOVIE }) => {
-  let { id } = useParams();
+import Layout from '../../UI/Layout/Layout';
+import { getMovieCastDetailsDataAPIUrl, getMovieDetailsDataAPIUrl } from '../../../utils/helperMethods';
+import { API_IMAGE_URL, MEDIA_TYPE } from '../../../utils/constants';
+import Avatar from '../../UI/Avater/Avatar';
+import WatchProvider from '../WatchProvider/WatchProvider';
+
+import "./MovieDetails.scss";
+
+const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
+ 
   const [movieDetails, setMovieDetails] = useState({})
   const [movieCast, setMovieCast] = useState([])
   const [totalRuntime, setTotalRunTime] = useState('');
@@ -60,7 +61,8 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE }) => {
           <div className='movie-details-container__main'>
             <div className='movie-details-container__main-content'>
               <div className='column'>
-                <div className='title'>{movieDetails.title}</div>
+                <div className='title'>{type === MEDIA_TYPE.MOVIE ? movieDetails.title : movieDetails.name}</div>
+                <div className='tagline'>{movieDetails.tagline}</div>
                 <div className='stats'>
                   <div>{movieDetails.vote_average?.toFixed(2)}</div>
                   <div>/{movieDetails.vote_count}</div>

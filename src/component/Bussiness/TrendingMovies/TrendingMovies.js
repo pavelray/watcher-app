@@ -57,6 +57,7 @@ const Trending = ({ title, type }) => {
                                 releaseDate={tr.release_date || tr.first_air_date}
                                 ratings={voteAvg}
                                 genre={genre}
+                                type={type}
                             />
                         );
                     })}

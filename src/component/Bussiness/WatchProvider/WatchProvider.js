@@ -51,7 +51,7 @@ const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {
             <select onChange={handleOnChange}>
                 {
                     countryData?.map((country) => (
-                        <option value={country.iso_3166_1}>{country.english_name}</option>
+                        <option value={country.iso_3166_1} key={country.iso_3166_1}>{country.english_name}</option>
                     ))
                 }
             </select>

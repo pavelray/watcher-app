@@ -1,7 +1,8 @@
 import './App.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/home';
-import MovieDetails from './pages/MovieDetails';
+import Movie from './pages/movie';
+import TvShow from './pages/tv';
 
 const router = createBrowserRouter([
   {
@@ -10,7 +11,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/movie/:id",
-    element: <MovieDetails />,
+    element: <Movie />,
+  },
+  {
+    path: "/tv/:id",
+    element: <TvShow />,
   }
 ]);
 

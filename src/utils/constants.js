@@ -146,7 +146,7 @@ export const TV_GENRE = [
 
 export const MEDIA_TYPE = {
     MOVIE: 'movie',
-    TV_SERIES: 'tv_series'
+    TV_SERIES: 'tv'
 }
 
 export const API_VERSION = 3;
