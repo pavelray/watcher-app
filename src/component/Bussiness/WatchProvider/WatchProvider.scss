@@ -1,0 +1,16 @@
+.provider-container{
+    margin-top: 20px;
+    cursor: pointer;
+
+    .provider-title{
+        margin-top: 20px;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: bold;
+    }
+
+    .provider-logo{
+        margin-top: 10px;
+    }
+}
