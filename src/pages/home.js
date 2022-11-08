@@ -5,12 +5,10 @@ import { MEDIA_TYPE } from '../utils/constants'
 
 const Home = () => {
   return (
-    <div>
       <Layout>
         <Trending title="Trending Movies" type={MEDIA_TYPE.MOVIE} />
         <Trending title="Trending Tv Series" type={MEDIA_TYPE.TV_SERIES} />
       </Layout>
-    </div>
   )
 }
 

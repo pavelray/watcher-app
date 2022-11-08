@@ -1,16 +1,29 @@
-.provider-container{
-    margin-top: 20px;
+.provider{
+    margin-top: 50px;
     cursor: pointer;
 
-    .provider-title{
-        margin-top: 20px;
+    &-title{
         font-size: 16px;
         text-transform: uppercase;
         letter-spacing: 5px;
         font-weight: bold;
     }
 
-    .provider-logo{
-        margin-top: 10px;
+    &-logo{
+        margin-top: 10px;  
+    }
+
+    &-logo:not(:first-child){
+        margin-left: 10px;
+    }
+
+    &-not-available{
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    &-logo-wrapper {
+        display: flex;
     }
 }

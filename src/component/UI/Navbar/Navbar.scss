@@ -5,6 +5,28 @@
 
 .logo {
   display: flex;
+  width: 30%;
+}
+
+.search-wrapper{
+  display: flex;
+  width: 40%;
+  justify-content: center;
+
+  &__input{
+    width: 60%;
+    font-size: 20px;
+  }
+  &__button{
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+
+    span{
+      font-size: 35px;
+    }
+  }
 }
 
 ul {
@@ -15,7 +37,7 @@ ul {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 2px;
-  width: 100%;
+  width: 30%;
   
   li:hover {
     cursor: pointer;

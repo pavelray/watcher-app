@@ -4,7 +4,6 @@
   position: relative;
   min-height: 100vh;
   display: flex;
-  background-size: cover;
   padding: 20px;
 
   &::before {
@@ -20,13 +19,12 @@
   &__main {
     position: relative;
     color: #ffffff;
-    margin-top: 20rem;
+    margin-top: 10rem;
     padding: 0 6rem;
 
     &-content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-auto-rows: 100px;
       gap: 20rem;
     }
     .column {
@@ -87,7 +85,16 @@
           margin-bottom: .5rem;
           letter-spacing: 0.2rem;
         }
+
+        &:not(:first-child){
+          margin: 6rem 0;
+        }
       }
     }
   }
+
+}
+
+.similar-movies{
+  margin:0px 50px;
 }

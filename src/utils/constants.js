@@ -152,3 +152,4 @@ export const MEDIA_TYPE = {
 export const API_VERSION = 3;
 export const API_BASE_URL = `https://api.themoviedb.org/${API_VERSION}`;
 export const API_IMAGE_URL = 'https://image.tmdb.org/t/p';
+export const NO_IMG_PLACEHOLDER_USER = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg`;

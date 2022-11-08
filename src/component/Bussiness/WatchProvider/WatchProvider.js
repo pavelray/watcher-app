@@ -1,82 +1,113 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
-import React, { useCallback, useEffect, useState } from 'react'
-import { API_IMAGE_URL, MEDIA_TYPE } from '../../../utils/constants';
-import { getAllCountriesAPIUrl, getProvidersAPIUrl } from '../../../utils/helperMethods';
+import axios from "axios";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
+import { API_IMAGE_URL, MEDIA_TYPE } from "../../../utils/constants";
+import {
+  getAllCountriesAPIUrl,
+  getProvidersAPIUrl,
+} from "../../../utils/helperMethods";
 import "./WatchProvider.scss";
 
 const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {
-    const USER_COUNTRY = 'IN';
-    const [countryData, setCountryData] = useState([]);
-    const [providers, setProviderData] = useState({});
-    // const [selectedProvider, setSelectedProvider] = useState([]);
+  const USER_COUNTRY = "IN";
+  const [countryData, setCountryData] = useState([]);
+  const [providers, setProviderData] = useState({});
+  // const [selectedProvider, setSelectedProvider] = useState([]);
 
-    const getAllCountries = useCallback(() => {
-        const fetchCountries = async () => {
-            const url = getAllCountriesAPIUrl()
-            const resp = await axios.get(
-                url
-            );
-            const { data } = resp;
-            setCountryData(data);
-        };
+  const getAllCountries = useCallback(() => {
+    const fetchCountries = async () => {
+      const url = getAllCountriesAPIUrl();
+      const resp = await axios.get(url);
+      const { data } = resp;
+      setCountryData(data);
+    };
 
-        fetchCountries();
-    }, []);
+    fetchCountries();
+  }, []);
 
-    const getProviders = useCallback(() => {
-        const fetchProviders = async () => {
-            const url = getProvidersAPIUrl(type, id)
-            const resp = await axios.get(
-                url
-            );
-            const { data } = resp;
-            setProviderData(data.results[USER_COUNTRY]);
-        };
-        fetchProviders();
-    }, []);
+  const getProviders = useCallback(() => {
+    const fetchProviders = async (id) => {
+      const url = getProvidersAPIUrl(type, id);
+      const resp = await axios.get(url);
+      const { data } = resp;
+      setProviderData(data.results[USER_COUNTRY]);
+    };
+    fetchProviders(id);
+  }, [id]);
 
+  useEffect(() => {
+    // getAllCountries();
+    getProviders(id);
+  }, [id]);
 
-    useEffect(() => {
-        // getAllCountries();
-        getProviders();
-    }, []);
-
-    // const handleOnChange = (event) => {
-    //     const { value } = event.target;
-    //     const selectValue = providers[value].flatrate;
-    //     setSelectedProvider(selectValue);
-    // }
-
+  const renderStreamingProvider = () => {
     return (
-        <div className='provider-container'>
-            {/* <select onChange={handleOnChange}>
-                {
-                    countryData?.map((country) => (
-                        <option value={country.iso_3166_1} key={country.iso_3166_1}>{country.english_name}</option>
-                    ))
-                }
-            </select>
-            <div>
-                {
-                    selectedProvider?.map((provider) => (
-                        <div>{provider.provider_name}</div>
-                    ))
-                }
-            </div> */}
-            <div className='provider-title'>
-                Streaming
-            </div>
-            {
-                providers.flatrate && providers.flatrate.map((ott) => (
-                    <div key={ott.provider_id} className='provider-logo'>
-                        <img src={`${API_IMAGE_URL}/w45/${ott.logo_path}`} alt={ott.provider_name} />
-                    </div>
-                ))
-            }
+      providers?.flatrate && (
+        <Fragment>
+          <div className="provider-title">Streaming</div>
+          <div className="provider-logo-wrapper">
+            {providers?.flatrate.map((ott) => (
+              <div key={ott.provider_id} className="provider-logo">
+                <img
+                  src={`${API_IMAGE_URL}/w45/${ott.logo_path}`}
+                  alt={ott.provider_name}
+                />
+              </div>
+            ))}
+          </div>
+        </Fragment>
+      )
+    );
+  };
 
-        </div>
-    )
-}
+  const renderBuyProvider = () => {
+    return (
+      providers?.buy && (
+        <Fragment>
+          <div className="provider-title">Buy</div>
+          <div className="provider-logo-wrapper">
+            {providers?.buy.map((ott) => (
+              <div key={ott.provider_id} className="provider-logo">
+                <img
+                  src={`${API_IMAGE_URL}/w45/${ott.logo_path}`}
+                  alt={ott.provider_name}
+                />
+              </div>
+            ))}
+          </div>
+        </Fragment>
+      )
+    );
+  };
 
-export default WatchProvider
+  const renderRentProvider = () => {
+    return (
+      providers?.rent && (
+        <Fragment>
+          <div className="provider-title">Rent</div>
+          <div className="provider-logo-wrapper">
+            {providers?.rent.map((ott) => (
+              <div key={ott.provider_id} className="provider-logo">
+                <img
+                  src={`${API_IMAGE_URL}/w45/${ott.logo_path}`}
+                  alt={ott.provider_name}
+                />
+              </div>
+            ))}
+          </div>
+        </Fragment>
+      )
+    );
+  };
+
+  return (
+    <div className="provider">
+      {providers && renderStreamingProvider()}
+      {providers && renderBuyProvider()}
+      {providers && renderRentProvider()}
+      {!providers &&  <div className="provider-not-available">Not Available for streaming in your location</div>}
+    </div>
+  );
+};
+
+export default WatchProvider;
