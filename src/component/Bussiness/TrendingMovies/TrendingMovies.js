@@ -3,8 +3,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { MovieCard } from "../MovieCard/MovieCard";
 import "./TrendingMovies.scss";
-import { MEDIA_TYPE, MOVIE_GENRE, TV_GENRE } from "../../../utils/constants";
-import { getTrendingDataAPIUrl } from "../../../utils/helperMethods";
+import { getGenre, getTrendingDataAPIUrl } from "../../../utils/helperMethods";
 
 const Trending = ({ title, type }) => {
     const [trending, setTrending] = useState([]);
@@ -24,21 +23,6 @@ const Trending = ({ title, type }) => {
 
     useEffect(() => getTrendingValues, []);
 
-    const getGenre = (media) => {
-        if (type === MEDIA_TYPE.MOVIE) {
-            return MOVIE_GENRE.filter((element) =>
-                media.genre_ids.includes(element.id)
-            )
-                .map((g) => g.name)
-                .toString();
-        }
-
-        return TV_GENRE.filter((element) =>
-            media.genre_ids.includes(element.id)
-        )
-            .map((g) => g.name)
-            .toString();
-    };
 
     return (
         <div className="slide-container">
@@ -46,7 +30,7 @@ const Trending = ({ title, type }) => {
             <div className="slide-container__scroll-wrapper">
                 <div className="slide-container__content">
                     {trending.map((tr) => {
-                        const genre = getGenre(tr);
+                        const genre = getGenre(tr, type);
                         const voteAvg = tr.vote_average.toFixed(2);
                         return (
                             <MovieCard

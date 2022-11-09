@@ -10,6 +10,7 @@ const Search = () => {
     const queryParams = new URLSearchParams(search);
     const searchQuery = queryParams.get('query');
     const [searchData, setSearchData] = useState([]);
+    const [totalResult, setTotalResults] = useState();
 
 
     const getSearchValues = useCallback(() => {
@@ -18,6 +19,7 @@ const Search = () => {
             const resp = await axios.get(searchUrl);
             const { data } = resp;
             setSearchData(data.results);
+            setTotalResults(data.total_results)
         }
         return fetchSearchData();
     }, [searchQuery]);
@@ -29,7 +31,8 @@ const Search = () => {
     return (
         <Layout>
             <div className='search-page-container'>
-                <h1>Welcome to Search Page {searchQuery}</h1>
+                <h2>Showing Results for: {searchQuery.toString()}</h2>
+                <h5>Total found: {totalResult}</h5>
                 <SearchComponent searchData={searchData} />
             </div>
 

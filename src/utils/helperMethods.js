@@ -1,4 +1,4 @@
-import { API_BASE_URL, MEDIA_TYPE } from "./constants";
+import { API_BASE_URL, MEDIA_TYPE, MOVIE_GENRE, TV_GENRE } from "./constants";
 
 export const getTrendingDataAPIUrl = (type) => {
     switch(type){
@@ -76,3 +76,20 @@ export const getAllCountriesAPIUrl = () => {
 export const getSearchUrl = (query) => {
     return `${API_BASE_URL}/search/multi?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&query=${query}&page=1`
 }
+
+
+export const getGenre = (media, type) => {
+    if (type === MEDIA_TYPE.MOVIE) {
+        return MOVIE_GENRE.filter((element) =>
+            media.genre_ids.includes(element.id)
+        )
+            .map((g) => g.name)
+            .toString();
+    }
+
+    return TV_GENRE.filter((element) =>
+        media.genre_ids.includes(element.id)
+    )
+        .map((g) => g.name)
+        .toString();
+};

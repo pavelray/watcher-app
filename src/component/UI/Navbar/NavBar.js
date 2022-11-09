@@ -3,7 +3,7 @@ import './Navbar.scss';
 import {
   Link, useNavigate
 } from "react-router-dom";
-import logo from '../../../images/icons/theaters.svg'
+
 
 const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,13 +14,23 @@ const NavBar = () => {
   }
 
   const navigateToSearch = () => {
-    navigate(`/search?query=${searchTerm}`);
+    if(searchTerm)
+      navigate(`/search?query=${searchTerm}`);
+  }
+
+  const navigateToHome = () => {
+    navigate('/');
   }
 
   return (
     <div className='navbar'>
-      <div className='logo'>
-        <img alt='logo' src={logo} />
+      <div className='brand-logo'>
+        <span className="material-symbols-outlined">
+          movie
+        </span>
+      </div>
+      <div className='brand' onClick={navigateToHome}>
+        <span>Moviezine</span>
       </div>
       <div className='search-wrapper'>
         <input type="text" value={searchTerm} onChange={handleChange} className='search-wrapper__input' placeholder='Search any movie, tv-series or people' />
