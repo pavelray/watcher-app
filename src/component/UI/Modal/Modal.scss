@@ -1,0 +1,35 @@
+@import '../../../styles/colors';
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: $dark; /* Fallback color */
+  background-color: $dark-background; /* Black w/ opacity */
+
+  &-content {
+    background-color: black;
+    margin: auto;
+    width: 70%;
+    padding: 0px 10px;
+  }
+  /* The Close Button */
+  .close {
+    color: $primary-dark;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+
+    &:focus,
+    &:hover {
+      color: $primary;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}

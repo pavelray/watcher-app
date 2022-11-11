@@ -6,13 +6,18 @@ import Layout from "../../UI/Layout/Layout";
 import {
   getMovieCastDetailsDataAPIUrl,
   getMovieDetailsDataAPIUrl,
-} from "../../../utils/helperMethods";
-import { API_IMAGE_URL, MEDIA_TYPE, NO_IMG_PLACEHOLDER_USER } from "../../../utils/constants";
+} from "../../../utils/apiUtills";
+import {
+  API_IMAGE_URL,
+  MEDIA_TYPE,
+  NO_IMG_PLACEHOLDER_USER,
+} from "../../../utils/constants";
 import Avatar from "../../UI/Avater/Avatar";
 import WatchProvider from "../WatchProvider/WatchProvider";
 
 import "./MovieDetails.scss";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
+import MovieVideos from "../MovieVideos/MovieVideos";
 
 const movieDetailsStyle = {
   backgroundAttachment: "fixed",
@@ -48,7 +53,9 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
       const resp = await axios.get(url);
       const { data } = resp;
       const castData = data.cast.filter((cast) => cast.profile_path !== null);
-      const crewData = data.crew.filter((crew) => crew.job === "Director" || crew.job === "Producer");
+      const crewData = data.crew.filter(
+        (crew) => crew.job === "Director" || crew.job === "Producer"
+      );
       setMovieCast(castData);
       setMovieCrew(crewData);
     };
@@ -94,6 +101,7 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
                 <div className="stats__other">&bull; {totalRuntime}</div>
               </div>
               <div className="description">{movieDetails.overview}</div>
+              <MovieVideos id={id} type={type} />
               <div className="provider">
                 <WatchProvider id={id} type={type} />
               </div>
@@ -117,28 +125,26 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
                   {movieCrew?.map((crew) => {
                     const { profile_path } = crew;
 
-                    const avatarImg = profile_path && profile_path !== null ?
-                      `${API_IMAGE_URL}/w154/${crew.profile_path}` : NO_IMG_PLACEHOLDER_USER;
+                    const avatarImg =
+                      profile_path && profile_path !== null
+                        ? `${API_IMAGE_URL}/w154/${crew.profile_path}`
+                        : NO_IMG_PLACEHOLDER_USER;
                     return (
-                      <>
                         <Avatar
                           imageSrc={avatarImg}
                           text={`${crew.job} ${crew.name}`}
                           key={crew.id}
                         />
-                      </>
-                    )
+                    );
                   })}
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-        
       </div>
       <div className="similar-movies">
-          <SimilarMovies title="Similar" type={type} id={id} />
+        <SimilarMovies title="Similar" type={type} id={id} />
       </div>
     </Layout>
   );

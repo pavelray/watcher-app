@@ -1,29 +1,35 @@
-.provider{
-    margin-top: 50px;
-    cursor: pointer;
+@import "../../../styles/mixins";
 
-    &-title{
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 5px;
-        font-weight: bold;
-    }
+.provider {
+  margin-top: 35px;
+  cursor: pointer;
 
-    &-logo{
-        margin-top: 10px;  
-    }
+  @include for-phone-only {
+    margin-top: 15px;
+  }
 
-    &-logo:not(:first-child){
-        margin-left: 10px;
-    }
+  &-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+  }
 
-    &-not-available{
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-    }
+  &-logo {
+    margin-top: 10px;
+  }
 
-    &-logo-wrapper {
-        display: flex;
-    }
+  &-logo:not(:first-child) {
+    margin-left: 10px;
+  }
+
+  &-not-available {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  &-logo-wrapper {
+    display: flex;
+  }
 }

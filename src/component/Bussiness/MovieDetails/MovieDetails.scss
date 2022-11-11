@@ -1,10 +1,15 @@
 @import "../../../styles/colors";
+@import "../../../styles/mixins";
 
 .movie-details-container {
   position: relative;
   min-height: 100vh;
   display: flex;
   padding: 20px;
+
+  @include for-phone-only{
+    padding: 10px;
+  }
 
   &::before {
     content: "";
@@ -13,27 +18,47 @@
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-color: rgba(43, 46, 74, 0.63);
+    background-color: $dark-background;
   }
 
   &__main {
     position: relative;
-    color: #ffffff;
+    color: $color;
     margin-top: 10rem;
     padding: 0 6rem;
 
+    @include for-phone-only{
+      margin-top: 1rem;
+      padding: 0 .2rem;
+      width: 100%;
+    }
+
     &-content {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20rem;
+      grid-column: 1;
+      gap: 1rem;
+
+      @include for-phone-only{
+        display: flex;
+        flex-direction: column;
+      }
     }
     .column {
+      @include for-phone-only{
+        display: flex;
+        flex-direction: column;
+      }
       .title {
         font-size: 2.5rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5rem;
         margin: 1rem 0;
+        color: $primary;
+        @include for-phone-only{
+          font-size: 1.5rem;
+          margin: .5rem 0;
+        }
       }
       .tagline{
         color: $primary;
@@ -63,6 +88,10 @@
             margin-left: 1rem;
           }
         }
+        @include for-phone-only{
+          font-size: 1rem;
+          margin: .5rem 0;
+        }
       }
       .description {
         font-size: 1.2rem;
@@ -78,6 +107,11 @@
         .cast {
           display: flex;
           flex-direction: row;
+          @include for-phone-only{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 70px;
+          }
         }
         .cast-title {
           font-size: 1.6rem;
@@ -97,4 +131,9 @@
 
 .similar-movies{
   margin:0px 50px;
+
+  @include for-phone-only{
+    margin:0px 10px;
+    margin-right: 40px;
+  }
 }

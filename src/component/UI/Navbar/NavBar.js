@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Navbar.scss';
 import {
   Link, useNavigate
@@ -21,6 +21,20 @@ const NavBar = () => {
   const navigateToHome = () => {
     navigate('/');
   }
+
+  useEffect(()=>{
+    const keyDownHandler = event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        navigateToSearch();
+      }
+    };
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  },[navigateToSearch])
 
   return (
     <div className='navbar'>
@@ -45,7 +59,7 @@ const NavBar = () => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          Movies
+          <Link to="/movie">Movie</Link>
         </li>
         <li>
           Tv Series

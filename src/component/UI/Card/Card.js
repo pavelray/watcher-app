@@ -13,7 +13,7 @@ const Card = ({ title, poster, releaseDate, ratings, genre, redirectToDetails })
       <div className="card-body">
         <div className="card-body__title">{title}</div>
         <div className="card-body__info">
-          <div>{releaseDate}</div>
+          <div>{new Date(releaseDate).getFullYear()}</div>
           <div>{ratings}</div>
         </div>
         <div className="card-body__genre">

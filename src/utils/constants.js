@@ -146,7 +146,17 @@ export const TV_GENRE = [
 
 export const MEDIA_TYPE = {
     MOVIE: 'movie',
-    TV_SERIES: 'tv'
+    TV_SERIES: 'tv',
+    PERSON: 'person'
+}
+
+export const VIDEO_TYPE = {
+  TRAILER: 'Trailer'
+}
+
+export const ERROR_MESSAGE = {
+  PAGE_NOT_FOUND: 'Opps! You are looking for a wrong page.',
+  SERVER_ERROR: 'Opps! some error occoured. Please try again later.'
 }
 
 export const API_VERSION = 3;

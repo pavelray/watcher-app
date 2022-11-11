@@ -5,7 +5,7 @@ import { API_IMAGE_URL, MEDIA_TYPE } from "../../../utils/constants";
 import {
   getAllCountriesAPIUrl,
   getProvidersAPIUrl,
-} from "../../../utils/helperMethods";
+} from "../../../utils/apiUtills";
 import "./WatchProvider.scss";
 
 const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {

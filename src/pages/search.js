@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import { getSearchUrl } from '../utils/helperMethods';
+import { getSearchUrl } from '../utils/apiUtills';
 import SearchComponent from '../component/Bussiness/SearchComponent/SearchComponent';
 import Layout from '../component/UI/Layout/Layout';
 
