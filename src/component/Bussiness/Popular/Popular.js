@@ -2,6 +2,7 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react'
 import { getPopularMoviesUrl } from '../../../utils/apiUtills';
+import { COLLECTION_TYPE } from '../../../utils/constants';
 import CardSlider from '../../UI/CardCarousel/CardSlider';
 
 const Popular = ({type, title}) => {
@@ -24,7 +25,7 @@ const Popular = ({type, title}) => {
 
 
     return (
-        <CardSlider data={popularMovies} type={type} title={title} />
+        <CardSlider data={popularMovies} type={type} title={title} dataType={COLLECTION_TYPE.POPULAR} />
     );
 }
 

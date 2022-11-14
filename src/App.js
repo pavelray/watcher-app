@@ -6,6 +6,7 @@ import TvShow from './pages/tv';
 import Search from './pages/search';
 import MovieLanding from './pages/MovieLanding';
 import ErrorPage from './pages/error';
+import ViewAll from './pages/viewAll';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/viewAll",
+    element: <ViewAll />,
     errorElement: <ErrorPage />
   }
 ]);

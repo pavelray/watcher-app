@@ -4,6 +4,7 @@ import axios from "axios";
 import "./NowPlaying.scss";
 import { getNowPlayingMoviesUrl } from "../../../utils/apiUtills";
 import CardSlider from "../../UI/CardCarousel/CardSlider";
+import { COLLECTION_TYPE } from "../../../utils/constants";
 
 const NowPlaying = ({ title, type }) => {
     const [nowPlaying, setNowPlaying] = useState([]);
@@ -25,7 +26,7 @@ const NowPlaying = ({ title, type }) => {
 
 
     return (
-        <CardSlider data={nowPlaying} type={type} title={title} />
+        <CardSlider data={nowPlaying} type={type} title={title} dataType={COLLECTION_TYPE.NOW_PLAYING}/>
     );
 };
 

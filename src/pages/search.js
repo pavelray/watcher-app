@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { getSearchUrl } from '../utils/apiUtills';
 import SearchComponent from '../component/Bussiness/SearchComponent/SearchComponent';
 import Layout from '../component/UI/Layout/Layout';
+import Pagination from '../component/UI/Pagination/Pagination';
 
 const Search = () => {
     let { search } = useLocation();
@@ -34,8 +35,9 @@ const Search = () => {
                 <h2>Showing Results for: {searchQuery.toString()}</h2>
                 <h5>Total found: {totalResult}</h5>
                 <SearchComponent searchData={searchData} />
+                
             </div>
-
+            <Pagination />
         </Layout>
     )
 }

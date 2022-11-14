@@ -150,6 +150,14 @@ export const MEDIA_TYPE = {
     PERSON: 'person'
 }
 
+export const COLLECTION_TYPE = {
+  TOP_RATED: 'top_rated',
+  POPULAR: 'popular',
+  UP_COMING: 'upcoming',
+  NOW_PLAYING: 'now_playing',
+  SIMILAR: 'similar'
+}
+
 export const VIDEO_TYPE = {
   TRAILER: 'Trailer'
 }

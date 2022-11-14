@@ -96,18 +96,22 @@ export const getUpcomingMoviesUrl = () => {
 
 
 // Get top rated movies in TMDB
-export const getTopRatedMoviesUrl = () => {
-    return `${API_BASE_URL}/movie/top_rated?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=1`
+export const getTopRatedMoviesUrl = (type=MEDIA_TYPE.MOVIE, pageNo=1) => {
+    return `${API_BASE_URL}/${type}/top_rated?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
 }
 
 // Get popular movies in TMDB
-export const getPopularMoviesUrl = () => {
-    return `${API_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=1`
+export const getPopularMoviesUrl = (type=MEDIA_TYPE.MOVIE, pageNo=1) => {
+    return `${API_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
 }
 
 // This will return the latest created movie in TMDB
-export const getLatestMoviesUrl = () => {
-    return `${API_BASE_URL}/movie/latest?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=1`
+export const getLatestMoviesUrl = (type=MEDIA_TYPE.MOVIE, pageNo=1) => {
+    return `${API_BASE_URL}/movie/latest?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
+}
+
+export const getViewAllUrl = (dataType, type=MEDIA_TYPE.MOVIE, pageNo=1) => {
+    return `${API_BASE_URL}/${type}/${dataType}?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
 }
 
 export const getMovieVideosUrl = (id, type) => {

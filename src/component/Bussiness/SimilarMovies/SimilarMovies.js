@@ -5,6 +5,7 @@ import { getSimilarDataAPIUrl } from "../../../utils/apiUtills";
 
 import "./SimilarMovies.scss";
 import CardSlider from "../../UI/CardCarousel/CardSlider";
+import { COLLECTION_TYPE } from "../../../utils/constants";
 
 
 const SimilarMovies = ({ title, type, id }) => {
@@ -27,7 +28,7 @@ const SimilarMovies = ({ title, type, id }) => {
 
     
     return (
-        <CardSlider data={similar} type={type} title={title} />
+        <CardSlider data={similar} type={type} title={title}  dataType={COLLECTION_TYPE.SIMILAR} />
     );
 };
 
