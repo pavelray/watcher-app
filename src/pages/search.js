@@ -10,8 +10,10 @@ const Search = () => {
     let { search } = useLocation();
     const queryParams = new URLSearchParams(search);
     const searchQuery = queryParams.get('query');
+    const [currentPage, setCurrentPage] = useState(1);
     const [searchData, setSearchData] = useState([]);
     const [totalResult, setTotalResults] = useState();
+    const [totalPages, setTotalPages] = useState();
 
 
     const getSearchValues = useCallback(() => {
@@ -20,7 +22,9 @@ const Search = () => {
             const resp = await axios.get(searchUrl);
             const { data } = resp;
             setSearchData(data.results);
-            setTotalResults(data.total_results)
+            setTotalResults(data.total_results);
+            setCurrentPage(data.page);
+            setTotalPages(data.total_pages);
         }
         return fetchSearchData();
     }, [searchQuery]);
@@ -29,15 +33,27 @@ const Search = () => {
         getSearchValues();
     }, [getSearchValues]);
 
+
+    const handlePageClick = (page) => {
+        console.log(page);
+        if (page === ">") {
+            setCurrentPage(currentPage + 1);
+        } else if (page === "<") {
+            setCurrentPage(currentPage - 1);
+        } else {
+            setCurrentPage(page);
+        }
+    };
+
     return (
         <Layout>
             <div className='search-page-container'>
                 <h2>Showing Results for: {searchQuery.toString()}</h2>
                 <h5>Total found: {totalResult}</h5>
+                <Pagination totalPages={totalPages} pages={searchData} selectedPage={currentPage} onPageClick={handlePageClick } />
                 <SearchComponent searchData={searchData} />
-                
             </div>
-            <Pagination />
+            <Pagination totalPages={totalPages} pages={searchData} selectedPage={currentPage} onPageClick={handlePageClick } />
         </Layout>
     )
 }
