@@ -15,7 +15,7 @@ const NavBar = () => {
 
   const navigateToSearch = useCallback(() => {
     if (searchTerm)
-      navigate(`/search?query=${searchTerm}`);
+      navigate(`/search?query=${searchTerm}&page=1`);
   }, [navigate, searchTerm])
 
   const navigateToHome = () => {
@@ -75,7 +75,7 @@ const NavBar = () => {
           </li>
         </ul>
         <button className='hamburger-icon' onClick={handleMobileMenu}>
-          <span class="material-symbols-outlined">
+          <span className="material-symbols-outlined">
             menu
           </span>
         </button>

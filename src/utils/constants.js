@@ -155,7 +155,8 @@ export const COLLECTION_TYPE = {
   POPULAR: 'popular',
   UP_COMING: 'upcoming',
   NOW_PLAYING: 'now_playing',
-  SIMILAR: 'similar'
+  SIMILAR: 'similar',
+  TRENDING: 'trending'
 }
 
 export const VIDEO_TYPE = {

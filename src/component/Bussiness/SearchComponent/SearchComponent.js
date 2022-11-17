@@ -4,7 +4,6 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import './SearchComponent.scss'
 
 const SearchComponent = ({ searchData }) => {
-  console.log(searchData);
   return (
     <div className='search-result-wrapper'>
       {searchData.map((tr) => {

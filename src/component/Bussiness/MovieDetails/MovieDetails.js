@@ -9,6 +9,7 @@ import {
 } from "../../../utils/apiUtills";
 import {
   API_IMAGE_URL,
+  COLLECTION_TYPE,
   MEDIA_TYPE,
   NO_IMG_PLACEHOLDER_USER,
 } from "../../../utils/constants";
@@ -144,7 +145,7 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
         </div>
       </div>
       <div className="similar-movies">
-        <SimilarMovies title="Similar" type={type} id={id} />
+        <SimilarMovies title="Similar" type={type} id={id} dataType={COLLECTION_TYPE.SIMILAR} />
       </div>
     </Layout>
   );

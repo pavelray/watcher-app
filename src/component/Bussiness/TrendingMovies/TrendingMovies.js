@@ -4,6 +4,7 @@ import axios from "axios";
 import "./TrendingMovies.scss";
 import { getTrendingDataAPIUrl } from "../../../utils/apiUtills";
 import CardSlider from "../../UI/CardCarousel/CardSlider";
+import { COLLECTION_TYPE } from "../../../utils/constants";
 
 const Trending = ({ title, type }) => {
     const [trending, setTrending] = useState([]);
@@ -25,7 +26,7 @@ const Trending = ({ title, type }) => {
 
 
     return (
-        <CardSlider data={trending} type={type} title={title} />
+        <CardSlider data={trending} type={type} title={title} dataType={COLLECTION_TYPE.TRENDING}/>
     );
 };
 

@@ -1,12 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import "./Pagination.scss";
 
 const Pagination = ({
   totalPages = 10,
   selectedPage = 1,
   pagesToShow = 4,
-  onPageClick,
+  onPageClick
 }) => {
   const [pageData, setPageData] = useState([]);
   const pages = Array(totalPages)
@@ -14,10 +15,9 @@ const Pagination = ({
     .map((_, i) => 1 * i + 1);
 
   const getPageArray = () => {
-    if (selectedPage < pagesToShow) {
+    if (selectedPage < pagesToShow && pagesToShow !== totalPages) {
       return [...pages.slice(0, pagesToShow - 1), "..", ...pages.slice(-1)];
-    }
-    if (
+    } else if (
       selectedPage >= pagesToShow &&
       selectedPage <= totalPages - pagesToShow
     ) {
@@ -29,48 +29,65 @@ const Pagination = ({
           selectedPage + pagesToShow / 2
         ),
         "..",
-        ...pages.slice(-1),
+        ...pages.slice(-1)
       ];
-    }
-    if (selectedPage > totalPages - pagesToShow) {
+    } else if (
+      selectedPage > totalPages - pagesToShow &&
+      pagesToShow !== totalPages
+    ) {
       return [
         ...pages.slice(0, 1),
         "..",
-        ...pages.slice(totalPages - pagesToShow),
+        ...pages.slice(totalPages - pagesToShow)
       ];
+    } else {
+      return pages;
     }
+  };
+
+  const goPrev = () => {
+    if (selectedPage - 1 >= 1) onPageClick(selectedPage - 1);
+  };
+
+  const goNext = () => {
+    if (selectedPage + 1 <= totalPages) onPageClick(selectedPage + 1);
   };
 
   const handleClick = (event) => {
     const { textContent } = event.target;
-    console.log(textContent);
-    onPageClick(+textContent);
+    const value = isNaN(+textContent) ? textContent : +textContent;
+
+    onPageClick(value);
   };
 
   useEffect(() => {
     const result = getPageArray();
     setPageData(result);
-  }, [totalPages]);
+  }, [totalPages, selectedPage]);
 
   return (
     <div className="pagination">
       <ul>
-        <li onClick={handleClick} value="<">
+        <li onClick={goPrev} className="list-item">
           &lt;
         </li>
         {pageData.map((page, index) => {
+          let listClassName = "list-item";
+          if (page === selectedPage) {
+            listClassName += " active";
+          }
+          if (page === "..") {
+            listClassName = "";
+          }
           return (
-            <li
-              onClick={handleClick}
-              className={page === selectedPage ? "active" : ""}
-            >
+            <li onClick={handleClick} className={listClassName} key={`page_${uuidv4()}`}>
               <span onClick={handleClick} value={page}>
                 {page}
               </span>
             </li>
           );
         })}
-        <li onClick={handleClick} value=">">
+        <li onClick={goNext} className="list-item">
           &gt;
         </li>
       </ul>

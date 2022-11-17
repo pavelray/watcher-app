@@ -1,3 +1,5 @@
+@import '../../../styles/colors';
+
 .pagination {
   ul {
     list-style-type: none;
@@ -6,25 +8,26 @@
     align-items: center;
 
     li {
-      padding: 5px 10px;
+      padding: 12px 2px;
       margin: 0.5px;
-
       border-radius: 50%;
-      width: 8px;
-
-      &:hover {
-        cursor: pointer;
-      }
+      width: 40px;
+      text-align: center;
 
       span {
-        text-align: center;
         font-weight: bold;
       }
     }
 
+    .list-item:hover{
+      cursor: pointer;
+      background-color: $primary-dark;
+      color: $dark;
+    }
+
     .active {
-      background: blue;
-      color: #fff;
+      background: $primary;
+      color: $dark;
     }
   }
 }
