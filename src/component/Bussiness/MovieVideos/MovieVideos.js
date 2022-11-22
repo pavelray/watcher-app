@@ -8,9 +8,13 @@ import './MovieVideos.scss';
 const MovieVideos = ({ id, type }) => {
 
     const [videoData, setVideoData] = useState([]);
+    const [viewModal, setViewModal] = useState(false);
     const showModal = () => {
-        const modal = document.getElementById('video-modal');
-        modal.style.display = "block";
+        setViewModal(true);
+    }
+
+    const onModalClose = () => {
+        setViewModal(false);
     }
 
     useEffect(() => {
@@ -29,7 +33,7 @@ const MovieVideos = ({ id, type }) => {
     return (
         <div className='video-container'>
             <button className='video-container-cta-btn' onClick={showModal}>Watch Trailer</button>
-            <Modal modalId='video-modal'>
+            <Modal open={viewModal} onModalClose={onModalClose}>
                 {
                     videoData.slice(0, 1).map((video) => (
                         <iframe className='video-frame' key={video.key} title={video.type} src={`https://www.youtube.com/embed/${video.key}`}>
