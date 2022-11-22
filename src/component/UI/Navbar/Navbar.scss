@@ -32,13 +32,23 @@
     letter-spacing: 2px;
     width: 30%;
 
+    li{
+      display: flex;
+      align-items: center;
+      align-content: center;
+      text-align: center;
+    }
     li:hover {
       cursor: pointer;
-      color: #e84545;
+      color: $primary-dark;
     }
     a {
       text-decoration: inherit;
       color: inherit;
+    }
+    .active{
+      color: $primary-dark;
+      border-bottom: 2px solid $primary-dark;
     }
 
     @include for-phone-only {

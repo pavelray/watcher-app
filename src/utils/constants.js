@@ -168,6 +168,8 @@ export const ERROR_MESSAGE = {
   SERVER_ERROR: 'Opps! some error occoured. Please try again later.'
 }
 
+export const APP_NAME = 'Moviezine';
+
 export const API_VERSION = 3;
 export const API_BASE_URL = `https://api.themoviedb.org/${API_VERSION}`;
 export const API_IMAGE_URL = 'https://image.tmdb.org/t/p';

@@ -19,6 +19,7 @@ import WatchProvider from "../WatchProvider/WatchProvider";
 import "./MovieDetails.scss";
 import SimilarMovies from "../SimilarMovies/SimilarMovies";
 import MovieVideos from "../MovieVideos/MovieVideos";
+import SeasonDetails from "../SeasonDetails/SeasonDetails";
 
 const movieDetailsStyle = {
   backgroundAttachment: "fixed",
@@ -32,6 +33,7 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
   const [movieCast, setMovieCast] = useState([]);
   const [movieCrew, setMovieCrew] = useState([]);
   const [totalRuntime, setTotalRunTime] = useState("");
+  const [totalSeason, setTotalSeason] = useState();
 
   const getMovieDetails = useCallback(() => {
     const fetchMovieDetails = async (id) => {
@@ -44,6 +46,14 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
 
       setTotalRunTime(`${hours}h ${minutes}m`);
       setMovieDetails(data);
+
+      const seasons =
+        type === MEDIA_TYPE.TV_SERIES
+          ? data.seasons.filter(
+              (s) => s.air_date !== null && s.season_number > 0
+            )
+          : undefined;
+      setTotalSeason(seasons);
     };
     fetchMovieDetails(id);
   }, [id]);
@@ -97,9 +107,17 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
               <div className="stats">
                 <div className="stats__other">{movieDetails.status}</div>
                 <div className="stats__other">
-                  &bull; {new Date(movieDetails.release_date).getFullYear()}
+                  &bull;{" "}
+                  {type === MEDIA_TYPE.MOVIE
+                    ? new Date(movieDetails.release_date).getFullYear()
+                    : new Date(movieDetails.first_air_date).getFullYear()}
                 </div>
-                <div className="stats__other">&bull; {totalRuntime}</div>
+                <div className="stats__other">
+                  &bull;{" "}
+                  {type === MEDIA_TYPE.MOVIE
+                    ? totalRuntime
+                    : `Seasons : ${totalSeason?.length}, Episodes: ${movieDetails.number_of_episodes}`}
+                </div>
               </div>
               <div className="description">{movieDetails.overview}</div>
               <MovieVideos id={id} type={type} />
@@ -131,11 +149,11 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
                         ? `${API_IMAGE_URL}/w154/${crew.profile_path}`
                         : NO_IMG_PLACEHOLDER_USER;
                     return (
-                        <Avatar
-                          imageSrc={avatarImg}
-                          text={`${crew.job} ${crew.name}`}
-                          key={crew.id}
-                        />
+                      <Avatar
+                        imageSrc={avatarImg}
+                        text={`${crew.job} ${crew.name}`}
+                        key={crew.id}
+                      />
                     );
                   })}
                 </div>
@@ -144,8 +162,16 @@ const MovieDetails = ({ type = MEDIA_TYPE.MOVIE, id }) => {
           </div>
         </div>
       </div>
+      {type === MEDIA_TYPE.TV_SERIES && (
+        <SeasonDetails seasons={totalSeason} id={id} />
+      )}
       <div className="similar-movies">
-        <SimilarMovies title="Similar" type={type} id={id} dataType={COLLECTION_TYPE.SIMILAR} />
+        <SimilarMovies
+          title="Similar"
+          type={type}
+          id={id}
+          dataType={COLLECTION_TYPE.SIMILAR}
+        />
       </div>
     </Layout>
   );

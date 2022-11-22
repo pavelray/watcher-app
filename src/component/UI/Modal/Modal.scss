@@ -1,4 +1,6 @@
 @import '../../../styles/colors';
+@import '../../../styles/mixins';
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -17,6 +19,10 @@
     margin: auto;
     width: 70%;
     padding: 0px 10px;
+
+    @include for-phone-only{
+      width: 90%;
+    }
   }
   /* The Close Button */
   .close {

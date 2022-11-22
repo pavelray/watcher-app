@@ -78,6 +78,10 @@ export const getSearchUrl = (query, page=1) => {
     return `${API_BASE_URL}/search/multi?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&query=${query}&page=${page}`
 }
 
+export const getSeasonDetailsAPIUrl = (id, seasonNo) => {
+    return `${API_BASE_URL}/tv/${id}/season/${seasonNo}?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US`
+} 
+
 /**
  *  Get now playing movies in theatres
  *  You can optionally specify a region prameter which will 
@@ -102,7 +106,7 @@ export const getTopRatedMoviesUrl = (type=MEDIA_TYPE.MOVIE, pageNo=1) => {
 
 // Get popular movies in TMDB
 export const getPopularMoviesUrl = (type=MEDIA_TYPE.MOVIE, pageNo=1) => {
-    return `${API_BASE_URL}/movie/popular?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
+    return `${API_BASE_URL}/${type}/popular?api_key=${process.env.REACT_APP_TMD_API_KEY}&language=en-US&page=${pageNo}`
 }
 
 // This will return the latest created movie in TMDB
