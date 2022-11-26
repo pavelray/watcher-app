@@ -15,6 +15,8 @@ const About = () => {
             This is an educational app which shows in which OTT platform the
             Movie/Tv series is available.
           </p>
+          <p><b>Another Version with more features - Comming Soon !!</b></p>
+          <p><b>Mobile App - Comming Soon !!</b></p>
         </div>
 
         <div className="about-extra">
