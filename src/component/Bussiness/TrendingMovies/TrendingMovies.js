@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./TrendingMovies.scss";
 import { getTrendingDataAPIUrl } from "../../../utils/apiUtills";
@@ -8,8 +8,7 @@ import { COLLECTION_TYPE } from "../../../utils/constants";
 
 const Trending = ({ title, type }) => {
     const [trending, setTrending] = useState([]);
-
-    const getTrendingValues = useCallback(() => {
+    useEffect(() => {
         const fetchTrendingMovies = async () => {
             const url = getTrendingDataAPIUrl(type)
             const resp = await axios.get(
@@ -21,8 +20,6 @@ const Trending = ({ title, type }) => {
 
         fetchTrendingMovies();
     }, []);
-
-    useEffect(() => getTrendingValues, []);
 
 
     return (

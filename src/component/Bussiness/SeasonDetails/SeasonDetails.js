@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getSeasonDetailsAPIUrl } from "../../../utils/apiUtills";
 import { API_IMAGE_URL } from "../../../utils/constants";
 import "./SeasonDetails.scss";
@@ -7,7 +7,7 @@ import "./SeasonDetails.scss";
 const SeasonDetails = ({ seasons, id }) => {
   const [seasonDetails, setSeasonDetails] = useState([]);
 
-  const getSeasonDetails = useCallback(() => {
+  useEffect(() => {
     let seasonsData = [];
     const fetchSeasonDetails = async (id, seasonNo) => {
       const url = getSeasonDetailsAPIUrl(id, seasonNo);
@@ -23,10 +23,6 @@ const SeasonDetails = ({ seasons, id }) => {
       setSeasonDetails(values);
     });
   }, [id, seasons]);
-
-  useEffect(() => {
-    getSeasonDetails();
-  }, [getSeasonDetails, id]);
 
   const handleTabClick = (e) => {
     const selectedTabId = e.target.dataset.id;
