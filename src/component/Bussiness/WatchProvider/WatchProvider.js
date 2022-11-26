@@ -2,28 +2,13 @@
 import axios from "axios";
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { API_IMAGE_URL, MEDIA_TYPE } from "../../../utils/constants";
-import {
-  getAllCountriesAPIUrl,
-  getProvidersAPIUrl,
-} from "../../../utils/apiUtills";
+import { getProvidersAPIUrl } from "../../../utils/apiUtills";
 import "./WatchProvider.scss";
 
 const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {
   const USER_COUNTRY = "IN";
-  const [countryData, setCountryData] = useState([]);
   const [providers, setProviderData] = useState({});
   // const [selectedProvider, setSelectedProvider] = useState([]);
-
-  const getAllCountries = useCallback(() => {
-    const fetchCountries = async () => {
-      const url = getAllCountriesAPIUrl();
-      const resp = await axios.get(url);
-      const { data } = resp;
-      setCountryData(data);
-    };
-
-    fetchCountries();
-  }, []);
 
   const getProviders = useCallback(() => {
     const fetchProviders = async (id) => {
@@ -36,7 +21,6 @@ const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {
   }, [id]);
 
   useEffect(() => {
-    // getAllCountries();
     getProviders(id);
   }, [id]);
 
@@ -105,7 +89,11 @@ const WatchProvider = ({ type = MEDIA_TYPE.MOVIE, id }) => {
       {providers && renderStreamingProvider()}
       {providers && renderBuyProvider()}
       {providers && renderRentProvider()}
-      {!providers &&  <div className="provider-not-available">Not Available for streaming in your location</div>}
+      {!providers && (
+        <div className="provider-not-available">
+          Not Available for streaming in your location
+        </div>
+      )}
     </div>
   );
 };
