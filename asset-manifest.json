@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/watcher-app/static/css/main.58df9359.css",
+    "main.js": "/watcher-app/static/js/main.63f245d3.js",
+    "static/js/787.8d3d74a3.chunk.js": "/watcher-app/static/js/787.8d3d74a3.chunk.js",
+    "index.html": "/watcher-app/index.html",
+    "main.58df9359.css.map": "/watcher-app/static/css/main.58df9359.css.map",
+    "main.63f245d3.js.map": "/watcher-app/static/js/main.63f245d3.js.map",
+    "787.8d3d74a3.chunk.js.map": "/watcher-app/static/js/787.8d3d74a3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58df9359.css",
+    "static/js/main.63f245d3.js"
+  ]
+}
